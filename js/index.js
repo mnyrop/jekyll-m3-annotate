@@ -1,23 +1,41 @@
 import mirador from 'mirador/dist/es/src/index';
 import annotationPlugins from 'mirador-annotations';
-import AnnototAdapter from 'mirador-annotations/es/AnnototAdapter';
-import LocalStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
+import annototAdapter from 'mirador-annotations/es/AnnototAdapter';
+import localStorageAdapter from 'mirador-annotations/es/LocalStorageAdapter';
 
-const config = {
-  id: 'demo',
-  annotation: {
-    adapter: (canvasId) => new LocalStorageAdapter(`localStorage://?canvasId=${canvasId}`),
-    // adapter: (canvasId) => new AnnototAdapter(canvasId, 'http://localhost:8888/'),
-  },
-  window: {
-    defaultSideBarPanel: 'annotations',
-    sideBarOpenByDefault: true,
-  },
-  windows: [{
-    manifestId: 'https://iiif-cds.library.nd.edu/iiif/manifest/durer',
-  }],
-};
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const manifest = urlParams.get('manifest')
 
-mirador.viewer(config, [
-  ...annotationPlugins,
-]);
+ const config = {
+   id: 'mirador-container',
+   annotation: {
+     adapter: (canvasId) => new localStorageAdapter(`localStorage://?canvasId=${canvasId}`),
+     // adapter: (canvasId) => new annototAdapter(canvasId, 'http://localhost:8888/'),
+   },
+   window: {
+     allowClose: false,
+     allowMaximize:  true,
+     defaultSideBarPanel: 'annotations',
+     sideBarOpenByDefault: true,
+     defaultView: 'book'
+   },
+   workspace: {
+     type: 'mosaic',
+   },
+   thumbnailNavigation: {
+     defaultPosition: 'off'
+   },
+   workspaceControlPanel: {
+     enabled: false,
+   },
+   windows: [{
+     loadedManifest: manifest,
+   }],
+ };
+
+ mirador.viewer(config, [
+   ...annotationPlugins,
+ ]);
+
+window.mirador = mirador;

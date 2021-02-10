@@ -17,6 +17,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'assets/js/mirador/'),
-    publicPath: 'assets/js/mirador/'
+    publicPath: 'assets/js/mirador/',
+    libraryExport: 'mirador'
   },
 };

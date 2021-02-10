@@ -1,0 +1,22 @@
+
+title: Athena Jekyll Theme
+description: A simple and elegant theme for Jekyll and GitHub Pages.
+
+url: ''
+baseurl: '/jekyll-m3-annotate'
+
+remote_theme: broccolini/athena
+plugins:
+  - jekyll-remote-theme
+exclude:
+  - README.md
+  - package*
+  - webpack*
+
+github_repo: jekyll-m3-annotate
+github_username: mnyrop
+
+collections:
+  viewers:
+    output: true
+    permalink: /viewer
