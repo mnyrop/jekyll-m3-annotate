@@ -4,4 +4,4 @@
     height: 80vh;
   }
 </style>
-<iframe src="{% link _viewers/mirador.md %}?manifest={{ include.manifest | absolute_url }}"></iframe>
+<iframe src="{{ '/viewer' | absolute_url }}?manifest={{ include.manifest | absolute_url }}"></iframe>

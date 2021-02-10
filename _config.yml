@@ -15,8 +15,3 @@ exclude:
 
 github_repo: jekyll-m3-annotate
 github_username: mnyrop
-
-collections:
-  viewers:
-    output: true
-    permalink: /viewer
